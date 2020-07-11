@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html >
-<!--From https://codepen.io/frytyler/pen/EGdtg-->
+
 <head>
   <meta charset="UTF-8">
-  <title>ML API</title>
+  <title>Aero Intellectus, Inc.</title>
   <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
@@ -20,22 +20,24 @@ body {
   color: #ffffff;
   font:400 .9em/1.9 'Open Sans', Calibri, Helvetica, Arial, sans-serif;
 }
-.custom-select1 {
-  position : absolute;
-  width: 100%;
-  max-width:  25em;
-  margin: 2em auto;
-  cursor: pointer;
-  top:40px;
-  left:40px
-}
+
 .custom-select {
   position : relative;
+  left: 0px;
+  top:20%;
   width: 100%;
   max-width:  25em;
   margin: 2em auto;
   cursor: pointer;
 }
+.login-select1 {
+	position : relative;
+	width: 100%;
+	max-width:  25em;  margin: 2em auto;
+  cursor: pointer;
+  top:20%; 
+}
+
 .select,
 .label{
   display: block;
@@ -76,74 +78,31 @@ body {
   }
 }
 
+.login-aeroii {
+	position : relative;
+	width: 100%;
+	max-width:  25em;  margin: 2em auto;
+  cursor: pointer;
+  top:-10%; 
+  right:-40%;
+  color:white
+}
+
   </style>
 
 </head>
 
 <body>
  <div class="login">
-	<h1>ISAIC Expert System</h1>
+  <!--<h1>ISAIC Expert System</h1> -->
+  <div class="login-first">ISAIC AI</div>
   
      <!-- Main Input For Receiving Query to our ML -->
-     
+    <div class="login-aeroii"> <a href="https://www.aeroii.com/">Aero Intellectus, Inc.</a></div>
     <form action="{{ url_for('predict')}}"method="post">
-      <!--
-      <h3>Functional Safety</h3>
-      <select id="industry" name="industry">
-          <option value="industrial">Industrial</option>
-          <option value="automotive">Automotive</option>
-          <option value="avionic">Avionic</option>
-          <option value="medical">Medical</option>
-        </select>
-      
+  
 
-      <h3>Compliance documents</h3>
-      <select id="compliance" name="compliance">
-          <option value="option_1">Option 1</option>
-          <option value="ISO-26262">ISO-26262</option>
-          <option value="option_2">Option 2</option>
-        </select>
-      
-      
-      <h3>Application Specific Integrated Circuit (ASIC)</h3>
-      <select id="asic" name="asic">
-          <option value="samsung">Samsung</option>
-          <option value="tsmc">TSMC</option>
-          <option value="umc">UMC</option>
-          <option value="toshiba">Toshiba</option>
-        </select>
-      
-      <h3>Fabrication</h3>
-      <select id="fab" name="fab">
-          <option value="64_nm">64 nm</option>
-          <option value="16_nm">16 nm</option>
-          <option value="10_nm">10 nm</option>
-        </select>
-
-      <h3>Legal Compliance</h3>
-      <select id="legal" name="legal">
-          <option value="tax">Tax</option>
-          <option value="export_control">Export Control</option>
-          <option value="FAR">FAR</option>
-          <option value="DFAR">DFAR</option>
-        </select>
-      
-      <h3>Department</h3>
-      <select id="dept" name="dept">
-          <option value="dept_commerce">Department of Commmerce</option>
-          <option value="dept_state">Department of State</option>
-          <option value="dod">DoD</option>
-        </select>
-      -->
-      
-<!--      
-      <input type="text" name="interview_score3" placeholder="Maximum Wind Speed" required="required" /><br>
-    	<input type="text" name="experience" placeholder="Maximum Temperature" required="required" /><br>
-        <input type="text" name="test_score" placeholder="Minimum Temperature" required="required" /><br>
-        <input type="text" name="interview_score5" placeholder="Average Temperature" required="required" /><br>
-        <input type="text" name="interview_score6" placeholder="Average Wind Speed" required="required" /><br>
--->
-        <div class="custom-select1">
+        <div class="custom-select">
           <label for="select-choice1" class="label select-2"><span class="selection-choice">Industry</span> </label>
           <select id="select-choice1" class="select" name='a'>
             <option value="industrial">Industrial</option>
@@ -156,7 +115,7 @@ body {
         <div class="custom-select">
           <label for="select-choice2" class="label select-2"><span class="selection-choice">Compliance</span> </label>
           <select id="select-choice2" class="select" name='b'>
-            <option value="option_1">Option 1</option>
+            <option value="option_1">DO-254</option>
             <option value="ISO-26262">ISO-26262</option>
             <option value="option_2">Option 2</option>
           </select>
@@ -203,14 +162,14 @@ body {
         <div class="custom-select">
           <label for="select-choice4" class="label select-2"><span class="selection-choice">Documents to be generated</span> </label>
           <select id="select-choice4" class="select" name='g'>
-            <option value="dept_commerce">Plan for Hardware Aspects of Certification</option>
-            <option value="dept_state">Job-Aid Checklist</option>
-            <option value="dod">Safety Plan</option>
+            <option value="phac">Plan for Hardware Aspects of Certification (PHAC)</option>
+            <option value="job_aid">Job-Aid Checklist</option>
+            <option value="safety_plan">Safety Plan</option>
           </select>
         </div>
 
 
-        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+        <button type="submit" class="btn btn-primary btn-large">Predict</button>
     </form>
 
    <br>

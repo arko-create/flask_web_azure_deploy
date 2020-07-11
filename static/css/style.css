@@ -13,6 +13,7 @@
 
 html { width: 100%; height:100%; overflow:hidden; }
 
+
 body { 
 	width: 100%;
 	height:100%;
@@ -30,16 +31,66 @@ body {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#092756',GradientType=1 );
 
 }
+/*
+body {
+	.css-selector {
+		background: linear-gradient(98deg, #4bc54a, #3a83d9, #1075ea);
+		background-size: 600% 600%;
+		-webkit-animation: AnimationName 30s ease infinite;
+		-moz-animation: AnimationName 30s ease infinite;
+		-o-animation: AnimationName 30s ease infinite;
+		animation: AnimationName 30s ease infinite;
+	}
+	@-webkit-keyframes AnimationName {
+		0%{background-position:0% 51%}
+		50%{background-position:100% 50%}
+		100%{background-position:0% 51%}
+	}
+	@-moz-keyframes AnimationName {
+		0%{background-position:0% 51%}
+		50%{background-position:100% 50%}
+		100%{background-position:0% 51%}
+	}
+	@-o-keyframes AnimationName {
+		0%{background-position:0% 51%}
+		50%{background-position:100% 50%}
+		100%{background-position:0% 51%}
+	}
+	@keyframes AnimationName {
+		0%{background-position:0% 51%}
+		50%{background-position:100% 50%}
+		100%{background-position:0% 51%}
+	}
+}
+*/
 .login { 
-	position: absolute;
+	/*position: absolute;
 	top: 20%;
 	left: 30%;
 	margin: -150px 0 0 -150px;
-	width:1000px;
-	height:1000px;
+	width:2000px;
+	height:1500px;*/
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	/*margin: -50px 0 0 -50px;*/
+	width:100%;
+	height:100%;
+	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #a7cfdf), color-stop(100, #23538a));
+	
 }
 
-.login h1 { color: #fff; text-shadow: 0 0 10px rgba(0,0,0,0.3); letter-spacing:1px; text-align:center; }
+
+.login-first { position: relative ;
+	color: #fff;
+	text-shadow: 0 0 10px rgba(0,0,0,0.3); 
+	letter-spacing:1px; text-align:center; 
+	top: 2%; 
+	left:0%; 
+	font-family: 'Helvetica Neue Light',Helvetica; 
+	font-size: 40px;
+}
+
 
 input { 
 	width: 100%; 
