@@ -20,9 +20,10 @@ def predict():
     #prediction = model.predict(final_features)
     #print(prediction[0])
     input_data = [parameters for parameters in request.form.values()]
-    print("input_data", input_data)
+    #print("input_data", input_data)
     #output = round(prediction[0], 2)
-    #return render_template('home.html', prediction_text="AQI for Jaipur {}".format(prediction[0]))
+    prediction = [123456789]
+    return render_template('home.html', prediction_text="ML prediction {}".format(prediction[0]))
 
 @app.route('/predict_api',methods=['POST'])
 def predict_api():
