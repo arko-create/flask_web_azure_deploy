@@ -13,8 +13,8 @@ def home():
     return render_template('home.html')
     #return render_template('index.html')
 
-@app.route('/predict',methods = ['POST'])
-def predict():
+@app.route('/generate',methods = ['POST'])
+def generate():
     #int_features = [float(x) for x in request.form.values()]
     #final_features = [np.array(int_features)]
     #prediction = model.predict(final_features)
@@ -23,12 +23,12 @@ def predict():
     print("input_data", input_data)
     #output = round(prediction[0], 2)
     prediction = [123456789]
-    return render_template('home.html', prediction_text="ML prediction {}".format(prediction[0]))
+    return render_template('result.html', prediction_text="ML prediction {}".format(prediction[0]))
 
-@app.route('/predict_api',methods=['POST'])
-def predict_api():
+@app.route('/generate_api',methods=['POST'])
+def generate_api():
     '''
-    For direct API calls trought request
+    For direct API calls through requests.
     '''
     data = request.get_json(force=True)
     prediction = model.predict([np.array(list(data.values()))])

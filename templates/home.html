@@ -99,12 +99,12 @@ body {
   
      <!-- Main Input For Receiving Query to our ML -->
     <div class="login-aeroii"> <a href="https://www.aeroii.com/">Aero Intellectus, Inc.</a></div>
-    <form action="{{ url_for('predict')}}"method="post">
+    <form action="{{ url_for('generate')}}"method="post">
   
 
         <div class="custom-select">
           <label for="select-choice1" class="label select-2"><span class="selection-choice">Industry</span> </label>
-          <select id="select-choice1" class="select" name='a'>
+          <select id="select-choice1" class="select" name='a' onchange="ChangeDocumentList(); ChangeAssuranceLevel();">
             <option value="industrial">Industrial</option>
             <option value="automotive">Automotive</option>
             <option value="avionic">Avionic</option>
@@ -113,63 +113,91 @@ body {
         </div>
 
         <div class="custom-select">
-          <label for="select-choice2" class="label select-2"><span class="selection-choice">Compliance</span> </label>
+          <label for="select-choice2" class="label select-2"><span class="selection-choice">Safety Standard</span> </label>
           <select id="select-choice2" class="select" name='b'>
-            <option value="option_1">DO-254</option>
+          <!--  <option value="option_1">DO-254</option>
             <option value="ISO-26262">ISO-26262</option>
-            <option value="option_2">Option 2</option>
+            <option value="option_2">Option 2</option>-->
           </select>
+          <!-- This portion of the script selects the documents based on the industry selection -->
+          <script> 
+            var document_names = {};
+            document_names['avionic'] = ['DO-254'];
+            document_names['automotive'] = ['ISO-26262']
+            document_names['medical'] = ['IEC-61508']
+
+            function ChangeDocumentList(){
+              var industrylist = document.getElementById("select-choice1");
+              var documentlist = document.getElementById("select-choice2");
+              var selIndustry = industrylist.options[industrylist.selectedIndex].value;
+              while (documentlist.options.length) {
+                documentlist.remove(0);
+              }
+              var docs = document_names[selIndustry];
+              if (docs) {
+                var i;
+                for (i = 0; i < docs.length; i++) {
+                  var doc = new Option(docs[i], i);
+                  documentlist.options.add(doc);
+                }
+              }
+            }
+            </script>
         </div>
 
         <div class="custom-select">
-          <label for="select-choice3" class="label select-2"><span class="selection-choice">ASIC</span> </label>
+          <label for="select-choice3" class="label select-2"><span class="selection-choice">Assurance Level</span> </label>
           <select id="select-choice3" class="select" name='c'>
-            <option value="samsung">Samsung</option>
-            <option value="tsmc">TSMC</option>
-            <option value="umc">UMC</option>
-            <option value="toshiba">Toshiba</option>
           </select>
+          <script> 
+            var assurance_level = {};
+            assurance_level['avionic'] = ['DAL A', 'DAL B', 'DAL C', 'DAL D', 'DAL E'];
+            assurance_level['automotive'] = ['ASIL A', 'ASIL B', 'ASIL C', 'ASIL D']
+
+            function ChangeAssuranceLevel(){
+              var industrylist = document.getElementById("select-choice1");
+              var assurancelevel_list = document.getElementById("select-choice3");
+              var selIndustry = industrylist.options[industrylist.selectedIndex].value;
+              while (assurancelevel_list.options.length) {
+                assurancelevel_list.remove(0);
+              }
+              var levels = assurance_level[selIndustry];
+              if (levels) {
+                var i;
+                for (i = 0; i < levels.length; i++) {
+                  var level = new Option(levels[i], i);
+                  assurancelevel_list.options.add(level);
+                }
+              }
+            }
+            </script>
         </div>
 
         <div class="custom-select">
-          <label for="select-choice4" class="label select-2"><span class="selection-choice">Fabrication</span> </label>
+          <label for="select-choice4" class="label select-2"><span class="selection-choice">Component Type</span> </label>
           <select id="select-choice4" class="select" name='d'>
-            <option value="64_nm">64 nm</option>
-            <option value="16_nm">16 nm</option>
-            <option value="10_nm">10 nm</option>
+            <option value="Microcontroller">Microcontroller</option>
+            <option value="FPGA">FPGA</option>
+            <option value="Soft IP">Soft IP</option>
+            <option value="Hard IP">Hard IP</option>
+            <option value="DSP">DSP</option>
+            <option value="CPU">CPU</option>
+            <option value="GPGPU">GPGPU</option>
+            <option value="SoC">SoC</option>
           </select>
         </div>
 
         <div class="custom-select">
-          <label for="select-choice4" class="label select-2"><span class="selection-choice">Legal Compliance</span> </label>
+          <label for="select-choice4" class="label select-2"><span class="selection-choice">Output Documents</span> </label>
           <select id="select-choice4" class="select" name='e'>
-            <option value="tax">Tax</option>
-            <option value="export_control">Export Control</option>
-            <option value="FAR">FAR</option>
-            <option value="DFAR">DFAR</option>
-          </select>
-        </div>
-
-        <div class="custom-select">
-          <label for="select-choice4" class="label select-2"><span class="selection-choice">Department</span> </label>
-          <select id="select-choice4" class="select" name='f'>
-            <option value="dept_commerce">Department of Commmerce</option>
-            <option value="dept_state">Department of State</option>
-            <option value="dod">DoD</option>
-          </select>
-        </div>
-        
-        <div class="custom-select">
-          <label for="select-choice4" class="label select-2"><span class="selection-choice">Documents to be generated</span> </label>
-          <select id="select-choice4" class="select" name='g'>
-            <option value="phac">Plan for Hardware Aspects of Certification (PHAC)</option>
-            <option value="job_aid">Job-Aid Checklist</option>
-            <option value="safety_plan">Safety Plan</option>
+            <option value="Job_Aid">Job Aid</option>
+            <option value="PHAC">PHAC</option>
+            <option value="HAS">HAS</option>
           </select>
         </div>
 
 
-        <button type="submit" class="btn btn-primary btn-large">Predict</button>
+        <button type="submit" class="btn btn-primary btn-large">Generate Document</button>
     </form>
 
    <br>
